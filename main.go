@@ -41,22 +41,17 @@ func main() {
 			continue
 		}
 		if update.Message.Chat.ID == chatID {
-			if update.Message.NewChatMembers != nil {
-				newChatMembers := *update.Message.NewChatMembers
-				if len(newChatMembers) > 0 {
-					for _, newChatMember := range newChatMembers {
-
-						messageHTML, err := makeContent(joinGroupTemplate, "join_group.html", newChatMember)
-						if err != nil {
-							log.Println(err)
-							continue
-						}
-
-						msg := tgbotapi.NewMessage(update.Message.Chat.ID, messageHTML)
-						msg.ParseMode = "html"
-						bot.Send(msg)
-					}
+			if update.Message.NewChatMember != nil {
+				newChatMember := update.Message.NewChatMember
+				messageHTML, err := makeContent(joinGroupTemplate, "join_group.html", newChatMember)
+				if err != nil {
+					log.Println(err)
+					continue
 				}
+
+				msg := tgbotapi.NewMessage(update.Message.Chat.ID, messageHTML)
+				msg.ParseMode = "html"
+				bot.Send(msg)
 			}
 		}
 	}
