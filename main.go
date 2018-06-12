@@ -32,7 +32,7 @@ func main() {
 	log.Printf("Authorized on account %s", bot.Self.UserName)
 
 	u := tgbotapi.NewUpdate(0)
-	u.Timeout = 5
+	u.Timeout = 30
 
 	updates, err := bot.GetUpdatesChan(u)
 
