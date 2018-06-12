@@ -1,0 +1,4 @@
+package: github.com/ninjadotorg/ninja-telegram-bot
+import:
+- package: github.com/go-telegram-bot-api/telegram-bot-api
+  version: v4.6
