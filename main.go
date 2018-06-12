@@ -42,7 +42,7 @@ func main() {
 		}
 		if update.Message.Chat.ID == chatID {
 			if update.Message.NewChatMember != nil {
-				newChatMember := update.Message.NewChatMember
+				newChatMember := *update.Message.NewChatMember
 				messageHTML, err := makeContent(joinGroupTemplate, "join_group.html", newChatMember)
 				if err != nil {
 					log.Println(err)
